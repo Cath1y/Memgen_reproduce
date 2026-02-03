@@ -1,5 +1,10 @@
 # MemGen: Weaving Generative Latent Memory for Self-Evolving Agents
 
+## 📬 News
+
+Our paper has been accepted by ICLR 2026！We are currently testing our new code base to improve usability. We are also adding more datasets and multiturn memgen-grpo. We plan to respond to all current issues and provide a more complete README with detailed instructions within two weeks. Thank you for your patience :)
+
+
 ## 👋 Introduction
 This repo is the official implementation of [***MemGen: Weaving Generative Latent Memory for Self-Evolving Agents***](https://arxiv.org/pdf/2509.24704)
 
@@ -61,20 +66,6 @@ We follow a two-stage training approach, training each module separately.
     bash eval.sh
     ```
 
-## 🕒 Plans
-
-The current repository supports the following features:
-- [x] Basic MemGen model implementation
-- [x] Single/Multi-turn SFT weaver training
-- [x] Trigger RL training
-
-Additional features are planned and will be introduced gradually as they are finalized for public release.
-
-- [ ] Single/Multi-turn GRPO weaver training
-- [ ] Integration with retrieval-based memory systems
-- [ ] Baseline suite
-
-We sincerely appreciate your patience, interest, and support as we continue to enhance the project and make components more efficient.
 
 
 ## 🫡 Citation
