@@ -1,7 +1,0 @@
-{"time":"2026-02-14T23:24:08.832447006+08:00","level":"INFO","msg":"main: starting server","port-filename":"/tmp/tmpa50mvmk1/port-26604.txt","pid":26604,"log-level":0,"disable-analytics":false,"shutdown-on-parent-exit":false,"enable-dcgm-profiling":false}
-{"time":"2026-02-14T23:24:08.832953278+08:00","level":"INFO","msg":"server: will exit if parent process dies","ppid":26604}
-{"time":"2026-02-14T23:24:08.832947865+08:00","level":"INFO","msg":"server: accepting connections","addr":{"Name":"/tmp/wandb-26604-29786-1537621111/socket","Net":"unix"}}
-{"time":"2026-02-14T23:24:09.014800287+08:00","level":"INFO","msg":"connection: ManageConnectionData: new connection created","id":"1(@)"}
-{"time":"2026-02-14T23:24:09.019047602+08:00","level":"INFO","msg":"handleInformInit: received","streamId":"qv515swh","id":"1(@)"}
-{"time":"2026-02-14T23:24:10.055385984+08:00","level":"INFO","msg":"handleInformInit: stream started","streamId":"qv515swh","id":"1(@)"}
-{"time":"2026-02-14T23:36:28.78316616+08:00","level":"INFO","msg":"server: parent process exited, terminating service process"}
