@@ -17,6 +17,7 @@ class MemGenTrigger(nn.Module):
         self.model = model
         self.output_layer = nn.Linear(model.base_model.config.hidden_size, 2)
 
+
     def forward(
         self, 
         input_ids: torch.LongTensor, 

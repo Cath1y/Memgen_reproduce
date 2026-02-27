@@ -1,0 +1,173 @@
+[34m[1mwandb[0m: Detected [huggingface_hub.inference] in use.
+[34m[1mwandb[0m: Use W&B Weave for improved LLM call tracing. Install Weave with `pip install weave` then add `import weave` to the top of your script.
+[34m[1mwandb[0m: For more information, check out the docs at: https://weave-docs.wandb.ai/
+  0%|                                                                                  | 2/3362 [01:53<52:50:30, 56.62s/it]Traceback (most recent call last):
+{'loss': 0.0, 'grad_norm': 36.53976821899414, 'learning_rate': 0.0, 'num_tokens': 34911.0, 'completions/mean_length': 1023.46875, 'completions/min_length': 1019.0, 'completions/max_length': 1024.0, 'completions/clipped_ratio': 1.0, 'completions/mean_terminated_length': 0.0, 'completions/min_terminated_length': 0.0, 'completions/max_terminated_length': 0.0, 'rewards/compute_reward/mean': 0.34375, 'rewards/compute_reward/std': 0.4825586974620819, 'reward': 0.34375, 'reward_std': 0.4397946000099182, 'frac_reward_zero_std': 0.0, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'epoch': 0.0}
+{'loss': 0.0, 'grad_norm': 45.54728317260742, 'learning_rate': 2.967359050445104e-08, 'num_tokens': 70110.0, 'completions/mean_length': 1023.46875, 'completions/min_length': 1022.0, 'completions/max_length': 1024.0, 'completions/clipped_ratio': 1.0, 'completions/mean_terminated_length': 0.0, 'completions/min_terminated_length': 0.0, 'completions/max_terminated_length': 0.0, 'rewards/compute_reward/mean': 0.375, 'rewards/compute_reward/std': 0.49186936020851135, 'reward': 0.375, 'reward_std': 0.3335031569004059, 'frac_reward_zero_std': 0.25, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'epoch': 0.0}
+  File "/root/.vscode-server/memgen/MemGen/main.py", line 107, in <module>
+    main()
+  File "/root/.vscode-server/memgen/MemGen/main.py", line 101, in main
+    runner.train()
+  File "/root/.vscode-server/memgen/MemGen/memgen/runner.py", line 210, in train
+    self._train_weaver()
+  File "/root/.vscode-server/memgen/MemGen/memgen/runner.py", line 164, in _train_weaver
+    weaver_trainer.train()
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/trainer.py", line 2238, in train
+    return inner_training_loop(
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/trainer.py", line 2582, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/trainer.py", line 3790, in training_step
+    inputs = self._prepare_inputs(inputs)
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/trl/extras/profiling.py", line 98, in wrapper
+    return func(self, *args, **kwargs)
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/trl/trainer/grpo_trainer.py", line 1279, in _prepare_inputs
+    generation_batch = self._generate_and_score_completions(generation_batch)
+  File "/root/.vscode-server/memgen/MemGen/memgen/trainer/weaver_grpo_trainer.py", line 291, in _generate_and_score_completions
+    final_gen_batch_output = self.generation_manager.run_agent_loop(gen_batch=gen_batch)
+  File "/root/.vscode-server/memgen/MemGen/interactions/singleturn_interaction.py", line 109, in run_agent_loop
+    gen_output = self.actor_rollout_wg.generate(
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/root/.vscode-server/memgen/MemGen/memgen/model/modeling_memgen.py", line 509, in generate
+    outputs = reasoner(
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/utils/generic.py", line 959, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 450, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/utils/generic.py", line 1083, in wrapper
+    outputs = func(self, *args, **kwargs)
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 379, in forward
+    hidden_states = decoder_layer(
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/modeling_layers.py", line 93, in __call__
+    return super().__call__(*args, **kwargs)
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 231, in forward
+    hidden_states, _ = self.self_attn(
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 167, in forward
+    attn_output, attn_weights = attention_interface(
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/integrations/flash_attention.py", line 64, in flash_attention_forward
+    attn_output = _flash_attention_forward(
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/modeling_flash_attention_utils.py", line 652, in _flash_attention_forward
+    out_unpad = flash_varlen_fn(
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/flash_attn/flash_attn_interface.py", line 1412, in flash_attn_varlen_func
+    return FlashAttnVarlenFunc.apply(
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/autograd/function.py", line 575, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/flash_attn/flash_attn_interface.py", line 901, in forward
+    out_padded, softmax_lse, S_dmask, rng_state = _wrapped_flash_attn_varlen_forward(
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/_ops.py", line 1123, in __call__
+    return self._op(*args, **(kwargs or {}))
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/_library/autograd.py", line 113, in autograd_impl
+    result = forward_no_grad(*args, Metadata(keyset, keyword_only_args))
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/_library/autograd.py", line 40, in forward_no_grad
+    result = op.redispatch(keyset & _C._after_autograd_keyset, *args, **kwargs)
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/_ops.py", line 728, in redispatch
+    return self._handle.redispatch_boxed(keyset, *args, **kwargs)
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/_library/custom_ops.py", line 311, in backend_impl
+    utils.check_aliasing_constraint(
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/_library/utils.py", line 357, in check_aliasing_constraint
+    for tensor in iter_tensors(tuple_result, {}):
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/_library/utils.py", line 344, in iter_tensors
+    yield from check(arg)
+  File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/_library/utils.py", line 338, in check
+    if isinstance(arg, torch.Tensor):
+KeyboardInterrupt
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/root/.vscode-server/memgen/MemGen/main.py", line 107, in <module>
+[rank0]:     main()
+[rank0]:   File "/root/.vscode-server/memgen/MemGen/main.py", line 101, in main
+[rank0]:     runner.train()
+[rank0]:   File "/root/.vscode-server/memgen/MemGen/memgen/runner.py", line 210, in train
+[rank0]:     self._train_weaver()
+[rank0]:   File "/root/.vscode-server/memgen/MemGen/memgen/runner.py", line 164, in _train_weaver
+[rank0]:     weaver_trainer.train()
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/trainer.py", line 2238, in train
+[rank0]:     return inner_training_loop(
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/trainer.py", line 2582, in _inner_training_loop
+[rank0]:     tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/trainer.py", line 3790, in training_step
+[rank0]:     inputs = self._prepare_inputs(inputs)
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/trl/extras/profiling.py", line 98, in wrapper
+[rank0]:     return func(self, *args, **kwargs)
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/trl/trainer/grpo_trainer.py", line 1279, in _prepare_inputs
+[rank0]:     generation_batch = self._generate_and_score_completions(generation_batch)
+[rank0]:   File "/root/.vscode-server/memgen/MemGen/memgen/trainer/weaver_grpo_trainer.py", line 291, in _generate_and_score_completions
+[rank0]:     final_gen_batch_output = self.generation_manager.run_agent_loop(gen_batch=gen_batch)
+[rank0]:   File "/root/.vscode-server/memgen/MemGen/interactions/singleturn_interaction.py", line 109, in run_agent_loop
+[rank0]:     gen_output = self.actor_rollout_wg.generate(
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/root/.vscode-server/memgen/MemGen/memgen/model/modeling_memgen.py", line 509, in generate
+[rank0]:     outputs = reasoner(
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/utils/generic.py", line 959, in wrapper
+[rank0]:     output = func(self, *args, **kwargs)
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 450, in forward
+[rank0]:     outputs: BaseModelOutputWithPast = self.model(
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/utils/generic.py", line 1083, in wrapper
+[rank0]:     outputs = func(self, *args, **kwargs)
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 379, in forward
+[rank0]:     hidden_states = decoder_layer(
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/modeling_layers.py", line 93, in __call__
+[rank0]:     return super().__call__(*args, **kwargs)
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 231, in forward
+[rank0]:     hidden_states, _ = self.self_attn(
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 167, in forward
+[rank0]:     attn_output, attn_weights = attention_interface(
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/integrations/flash_attention.py", line 64, in flash_attention_forward
+[rank0]:     attn_output = _flash_attention_forward(
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/transformers/modeling_flash_attention_utils.py", line 652, in _flash_attention_forward
+[rank0]:     out_unpad = flash_varlen_fn(
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/flash_attn/flash_attn_interface.py", line 1412, in flash_attn_varlen_func
+[rank0]:     return FlashAttnVarlenFunc.apply(
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/autograd/function.py", line 575, in apply
+[rank0]:     return super().apply(*args, **kwargs)  # type: ignore[misc]
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/flash_attn/flash_attn_interface.py", line 901, in forward
+[rank0]:     out_padded, softmax_lse, S_dmask, rng_state = _wrapped_flash_attn_varlen_forward(
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/_ops.py", line 1123, in __call__
+[rank0]:     return self._op(*args, **(kwargs or {}))
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/_library/autograd.py", line 113, in autograd_impl
+[rank0]:     result = forward_no_grad(*args, Metadata(keyset, keyword_only_args))
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/_library/autograd.py", line 40, in forward_no_grad
+[rank0]:     result = op.redispatch(keyset & _C._after_autograd_keyset, *args, **kwargs)
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/_ops.py", line 728, in redispatch
+[rank0]:     return self._handle.redispatch_boxed(keyset, *args, **kwargs)
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/_library/custom_ops.py", line 311, in backend_impl
+[rank0]:     utils.check_aliasing_constraint(
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/_library/utils.py", line 357, in check_aliasing_constraint
+[rank0]:     for tensor in iter_tensors(tuple_result, {}):
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/_library/utils.py", line 344, in iter_tensors
+[rank0]:     yield from check(arg)
+[rank0]:   File "/root/miniconda3/envs/memgen/lib/python3.10/site-packages/torch/_library/utils.py", line 338, in check
+[rank0]:     if isinstance(arg, torch.Tensor):
+[rank0]: KeyboardInterrupt

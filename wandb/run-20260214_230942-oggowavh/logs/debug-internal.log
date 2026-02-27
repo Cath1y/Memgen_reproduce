@@ -1,0 +1,6 @@
+{"time":"2026-02-14T23:09:42.71788643+08:00","level":"INFO","msg":"stream: starting","core version":"0.23.0"}
+{"time":"2026-02-14T23:09:43.930423029+08:00","level":"INFO","msg":"stream: created new stream","id":"oggowavh"}
+{"time":"2026-02-14T23:09:43.930551174+08:00","level":"INFO","msg":"handler: started","stream_id":"oggowavh"}
+{"time":"2026-02-14T23:09:43.930775063+08:00","level":"INFO","msg":"stream: started","id":"oggowavh"}
+{"time":"2026-02-14T23:09:43.930815923+08:00","level":"INFO","msg":"writer: started","stream_id":"oggowavh"}
+{"time":"2026-02-14T23:09:43.930812481+08:00","level":"INFO","msg":"sender: started","stream_id":"oggowavh"}

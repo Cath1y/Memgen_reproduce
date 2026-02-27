@@ -37,7 +37,7 @@ model:
 # dataset configs
 dataset: 
   name: gsm8k
-  mode: sft  # options: ["sft", "grpo"], should manually keep align with the training method in `run` configs
+  mode: grpo  # options: ["sft", "grpo"], should manually keep align with the training method in `run` configs
   sft:
     val_ratio: 0.1
   grpo: 
@@ -51,7 +51,7 @@ run:
   # route
   mode: train
   train_weaver: True
-  train_weaver_method: sft    # sft or grpo
+  train_weaver_method: grpo    # sft or grpo
   train_trigger: False
   train_trigger_method: grpo  # grpo only
 
@@ -75,10 +75,10 @@ run:
       # duration
       logging_strategy: steps
       logging_steps: 1
-      eval_strategy: epoch
-      eval_steps: 100
-      save_strategy: epoch
-      save_steps: 100
+      eval_strategy: steps
+      eval_steps: 300
+      save_strategy: steps
+      save_steps: 300
  
       assistant_only_loss: False   # used only in conversational dataset
       max_length: 1024  # max sequence length
@@ -87,10 +87,11 @@ run:
       bf16: True
       report_to:  
         - tensorboard
+        - wandb
       
     # grpo configs
     grpo:
-      num_train_epochs: 1
+      num_train_epochs: 2
       per_device_train_batch_size: 8
       per_device_eval_batch_size: 8
       num_generations: 8   
@@ -98,6 +99,7 @@ run:
       gradient_accumulation_steps: 1
       beta: 0.0
       loss_type: grpo
+      repetition_penalty: 1.1
 
       max_prompt_length: 1024
       max_completion_length: 512
@@ -112,16 +114,17 @@ run:
       # duration
       logging_strategy: steps
       logging_steps: 1
-      eval_strategy: epoch
-      eval_steps: 100
-      save_strategy: epoch
-      save_steps: 100
+      eval_strategy: steps
+      eval_steps: 300
+      save_strategy: steps
+      save_steps: 300
 
       remove_unused_columns: False
       load_best_model_at_end: True
       bf16: True
       report_to:  
         - tensorboard
+        - wandb
 
   # trigger training configs
   trigger:
@@ -159,13 +162,15 @@ run:
       bf16: True
       report_to:  
         - tensorboard
+        - wandb
   
   # interaction config for evaluation
   interaction:
     max_turns: 1
     max_start_length: 1024     # Maximum length of the initial prompt.
     max_prompt_length: 4096    # Maximum prompt length during multi-turn interactions (includes all conversation history across turns).
-    max_response_length: 1024
+    max_response_length: 512
+    repetition_penalty: 1.2
     max_obs_length: 512
     do_sample: False
     temperature: 1.0

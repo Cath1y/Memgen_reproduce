@@ -1,8 +1,23 @@
 #!/bin/bash
+export HF_HOME="/root/autodl-tmp/cache"
+export HF_DATASETS_CACHE="${HF_HOME}/datasets"
+export TRANSFORMERS_CACHE="${HF_HOME}/transformers"
+
+# --- 2. 自动创建目录 (关键步骤：防止因目录不存在报错) ---
+# -p 参数确保如果目录已存在不会报错，且会自动创建父目录
+mkdir -p "$HF_HOME"
+mkdir -p "$HF_DATASETS_CACHE"
+mkdir -p "$TRANSFORMERS_CACHE"
+
+export HF_ENDPOINT="https://hf-mirror.com"
+
+export WANDB_API_KEY="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"
+export WANDB_PROJECT="memgen_trigger"
+export WANDB_WATCH="all"
 
 export DEBUG_MODE=true
 export LOG_PATH="./debug_log_2b.txt"
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=0,1,2,3
 export MAIN_PROCESS_PORT=29507
 export NCCL_DEBUG=INFO
 export NCCL_IB_DISABLE=1
@@ -32,11 +47,12 @@ PROMPT_LATENTS_LEN=16
 INFERENCE_LATENTS_LEN=8
 
 
-LOAD_WEAVER_PATH=null
+LOAD_WEAVER_PATH=/root/autodl-tmp/experiments/results/train/gsm8k/Qwen2.5-1.5B-Instruct/pn=1_pl=16_in=5_il=8_20260218-220219/weaver
 
 # train
 python -m accelerate.commands.launch \
     --config_file=configs/zero2.yaml \
+    --num_processes=4 \
     main.py \
     --cfg-path configs/latent_memory/${DATASET_NAME}.yaml \
     --options \

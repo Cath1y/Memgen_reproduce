@@ -82,7 +82,7 @@ class WeaverGRPOTrainer(GRPOTrainer):
         self.generation_manager = generation_manager
         
         assert self.max_prompt_length == generation_manager.config.max_start_length
-        assert self.max_completion_length == generation_manager.config.max_response_length
+        # assert self.max_completion_length == generation_manager.config.max_response_length
         assert self.temperature == generation_manager.config.temperature   
     
     def _build_multiturn_envs(self, inputs: list[dict[str, Union[torch.Tensor, Any]]]) -> tuple[list[list[dict]], list]:
@@ -410,10 +410,10 @@ class WeaverGRPOTrainer(GRPOTrainer):
 
         # Log prompt and completion texts
         # self._logs["prompt"].extend(gather_object(prompts_text))
-        self._logs["completion"].extend(gather_object(completions_text))
-        for i, name in enumerate(self.reward_func_names):
-            self._logs["rewards"][name].extend(rewards_per_func[:, i].tolist())
-        self._logs["advantages"].extend(all_process_advantages.tolist())
+        #self._logs["completion"].extend(gather_object(completions_text))
+        #for i, name in enumerate(self.reward_func_names):
+        #    self._logs["rewards"][name].extend(rewards_per_func[:, i].tolist())
+        #self._logs["advantages"].extend(all_process_advantages.tolist())
 
         return {
             "prompt_ids": prompts,

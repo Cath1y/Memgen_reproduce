@@ -42,6 +42,7 @@ class MemGenWeaver(nn.Module):
         assert self.prompt_query_latents.device == self.inference_query_latents.device
         return self.prompt_query_latents.device
 
+
     def _augment(
         self, 
         latents: torch.Tensor,

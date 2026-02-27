@@ -243,20 +243,27 @@ class MemGenGenerationMixin(GenerationMixin):
             trigger_indices = (aug_vector != -100).nonzero(as_tuple=True)[0]
 
         if trigger_indices.numel() > 0:
-            trigger_logits = trigger(
-                input_ids=input_ids[trigger_indices],
-                attention_mask=attention_mask[trigger_indices],
-                position_ids=position_ids[trigger_indices]
-            )
-            last_token_logits = trigger_logits[:, -1]  # [batch, 2]
 
-            next_tokens = self._get_next_token(
-                last_token_logits,
-                do_sample=do_sample,
-                temperature=temperature
-            ).view(-1)
+            if getattr(self.config, "all_delimiters_activated", False):
+                 # Force all valid trigger positions to be activated (1)
+                 # aug_vector is already initialized with 0s at valid positions and -100s elsewhere
+                 # We simply set all valid positions (currently 0) to 1
+                aug_vector[trigger_indices] = 1
+            else:
+                trigger_logits = trigger(
+                    input_ids=input_ids[trigger_indices],
+                    attention_mask=attention_mask[trigger_indices],
+                    position_ids=position_ids[trigger_indices]
+                )
+                last_token_logits = trigger_logits[:, -1]  # [batch, 2]
 
-            aug_vector[trigger_indices] = next_tokens
+                next_tokens = self._get_next_token(
+                    last_token_logits,
+                    do_sample=do_sample,
+                    temperature=temperature
+                ).view(-1)
+
+                aug_vector[trigger_indices] = next_tokens
 
         return aug_vector
 

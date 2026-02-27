@@ -30,7 +30,7 @@ from memgen.utils import (
     remove_trainer_checkpoints,
     log_trainable_params,
 )
-
+from memgen.callbacks import EmptyCacheCallback
 class MemGenRunner:
 
     def __init__(
@@ -81,10 +81,11 @@ class MemGenRunner:
         
         trigger_trainset_size = min(len(train_dataset) // 2, len(train_dataset))
         rand_indices = random.sample(range(len(train_dataset)), trigger_trainset_size)
-        return train_dataset, train_dataset.select(rand_indices)
+        return train_dataset.shuffle(seed=42), train_dataset.select(rand_indices).shuffle(seed=42)
     
     def _parse_valid_dataset(self, valid_dataset: Dataset) -> tuple[Dataset, Dataset]:
 
+        valid_dataset = valid_dataset.select(range(min(len(valid_dataset), 50)))
         trigger_validset_size = min(len(valid_dataset) // 2, len(valid_dataset))
         rand_indices = random.sample(range(len(valid_dataset)), trigger_validset_size)
         return valid_dataset, valid_dataset.select(rand_indices)
@@ -143,7 +144,8 @@ class MemGenRunner:
                 # --- add env into trainer ---
                 env_class=self.env_cls,
                 env_main_config=self.config.get("dataset"),
-                generation_manager=self.generation_manager
+                generation_manager=self.generation_manager,
+                callbacks=[EmptyCacheCallback()]
             )
         else:
             raise ValueError("Unsupported weaver training method.")
@@ -177,7 +179,8 @@ class MemGenRunner:
                 train_dataset=self.trigger_train_dataset, 
                 eval_dataset=self.trigger_valid_dataset, 
                 reward_funcs=[self.env_cls.compute_reward],
-                args=self.trigger_grpo_training_args
+                args=self.trigger_grpo_training_args,
+                callbacks=[EmptyCacheCallback()]
             )
         else:
             raise ValueError("Unsupported trigger training method.")
@@ -205,10 +208,12 @@ class MemGenRunner:
     def train(self):
         # train weaver
         if self.train_weaver:
+            #self._train_weaver(resume_from_checkpoint=resume_from_checkpoint)
             self._train_weaver()
             
         # train trigger
         if self.train_trigger:
+            #self._train_trigger(resume_from_checkpoint=resume_from_checkpoint)
             self._train_trigger()
     
     # ===== evaluate =====

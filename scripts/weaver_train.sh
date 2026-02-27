@@ -1,13 +1,33 @@
 #!/bin/bash
 
+export HF_HOME="/root/autodl-tmp/cache"
+export HF_DATASETS_CACHE="${HF_HOME}/datasets"
+export TRANSFORMERS_CACHE="${HF_HOME}/transformers"
+
+# --- 2. 自动创建目录 (关键步骤：防止因目录不存在报错) ---
+# -p 参数确保如果目录已存在不会报错，且会自动创建父目录
+mkdir -p "$HF_HOME"
+mkdir -p "$HF_DATASETS_CACHE"
+mkdir -p "$TRANSFORMERS_CACHE"
+
+export HF_ENDPOINT="https://hf-mirror.com"
+
+export WANDB_API_KEY="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"
+export WANDB_PROJECT="memgen"
+export WANDB_WATCH="all"
+
 export DEBUG_MODE=true
-export LOG_PATH="./debug_log_2b.txt"
-export CUDA_VISIBLE_DEVICES=0
+export LOG_PATH="/root/autodl-tmp/debug_log_2b.txt"
+mkdir -p $(dirname "$LOG_PATH")
+export CUDA_VISIBLE_DEVICES=0,1,2,3
 export MAIN_PROCESS_PORT=29507
 export NCCL_DEBUG=INFO
 export NCCL_IB_DISABLE=1
 export NCCL_P2P_DISABLE=1
 export NCCL_ASYNC_DISABLE=1
+
+export NCCL_TIMEOUT=7200000
+export TORCH_DISTRIBUTED_DEBUG=DETAIL
 
 # options:
 # - Qwen/Qwen2.5-1.5B-Instruct
@@ -20,12 +40,12 @@ TRIGGER_MODEL="Qwen/Qwen2.5-1.5B-Instruct"
 DATASET_NAME="gsm8k"  # options: gsm8k, gpqa, kodcode, triviaqa
 
 # MemGen configs
-TRAIN_METHOD="sft"    # options: sft or grpo
+TRAIN_METHOD="grpo"    # options: sft or grpo
 
 # Augmentation configs:
 # - For gsm8k, gpqa, kodcode: MAX_PROMPT_AUG_NUM=1, MAX_INFERENCE_AUG_NUM=5
 # - For triviaqa:             MAX_PROMPT_AUG_NUM=6, MAX_INFERENCE_AUG_NUM=0
-MAX_PROMPT_AUG_NUM=8
+MAX_PROMPT_AUG_NUM=1
 MAX_INFERENCE_AUG_NUM=5
 PROMPT_LATENTS_LEN=16
 INFERENCE_LATENTS_LEN=8
@@ -35,6 +55,7 @@ BATCH_SIZE=1
 # train
 python -m accelerate.commands.launch \
     --config_file=configs/zero2.yaml \
+    --num_processes 4 \
     main.py \
     --cfg-path configs/latent_memory/${DATASET_NAME}.yaml \
     --options \

@@ -1,0 +1,104 @@
+{
+  "os": "Linux-5.15.0-78-generic-x86_64-with-glibc2.35",
+  "python": "CPython 3.10.19",
+  "startedAt": "2026-02-21T01:59:55.078204Z",
+  "args": [
+    "--cfg-path",
+    "configs/latent_memory/gsm8k.yaml",
+    "--options",
+    "model.model_name",
+    "Qwen/Qwen2.5-1.5B-Instruct",
+    "model.max_prompt_aug_num",
+    "1",
+    "model.max_inference_aug_num",
+    "5",
+    "model.weaver.model_name",
+    "Qwen/Qwen2.5-1.5B-Instruct",
+    "model.weaver.prompt_latents_len",
+    "16",
+    "model.weaver.inference_latents_len",
+    "8",
+    "model.trigger.model_name",
+    "Qwen/Qwen2.5-1.5B-Instruct",
+    "model.trigger.active",
+    "False",
+    "datasets.mode",
+    "grpo",
+    "run.mode",
+    "train",
+    "run.train_weaver",
+    "True",
+    "run.train_trigger",
+    "False",
+    "run.train_weaver_method",
+    "grpo",
+    "run.weaver.sft.per_device_train_batch_size",
+    "1",
+    "run.weaver.sft.per_device_train_batch_size",
+    "1",
+    "run.weaver.sft.bf16",
+    "True",
+    "run.interaction.do_sample",
+    "True",
+    "run.interaction.temperature",
+    "1.0",
+    "run.interaction.max_response_length",
+    "1024"
+  ],
+  "program": "/root/.vscode-server/memgen/MemGen/main.py",
+  "codePath": "main.py",
+  "codePathLocal": "main.py",
+  "git": {
+    "remote": "https://github.com/KANABOON1/MemGen",
+    "commit": "cdb80c27a457ae06b86e796ae041d75a8c314c99"
+  },
+  "email": "karimpata3@gmail.com",
+  "root": "/root/.vscode-server/memgen/MemGen",
+  "host": "autodl-container-0mr2y4q0at-a0e6700b",
+  "executable": "/root/miniconda3/envs/memgen/bin/python",
+  "cpu_count": 72,
+  "cpu_count_logical": 144,
+  "gpu": "NVIDIA A800-SXM4-80GB",
+  "gpu_count": 4,
+  "disk": {
+    "/": {
+      "total": "32212254720",
+      "used": "14589403136"
+    }
+  },
+  "memory": {
+    "total": "1081806917632"
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA A800-SXM4-80GB",
+      "memoryTotal": "85899345920",
+      "cudaCores": 6912,
+      "architecture": "Ampere",
+      "uuid": "GPU-fec1b1d5-80c1-55e7-8885-0550650db5f0"
+    },
+    {
+      "name": "NVIDIA A800-SXM4-80GB",
+      "memoryTotal": "85899345920",
+      "cudaCores": 6912,
+      "architecture": "Ampere",
+      "uuid": "GPU-16d94d25-66ed-44ce-2246-c86fba3fcf29"
+    },
+    {
+      "name": "NVIDIA A800-SXM4-80GB",
+      "memoryTotal": "85899345920",
+      "cudaCores": 6912,
+      "architecture": "Ampere",
+      "uuid": "GPU-c54f9baf-2cde-a546-6498-79d11ed4bce8"
+    },
+    {
+      "name": "NVIDIA A800-SXM4-80GB",
+      "memoryTotal": "85899345920",
+      "cudaCores": 6912,
+      "architecture": "Ampere",
+      "uuid": "GPU-ab64a0a1-937f-1543-e15a-adf93a45d75d"
+    }
+  ],
+  "cudaVersion": "13.0",
+  "writerId": "lqn6phjlp2jcim9qzc6f5pobgtcg1aun"
+}

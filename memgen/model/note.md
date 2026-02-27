@@ -1,0 +1,9 @@
+weaver中的LoRA adapter相当于包装好的模型
+
+position id对应的是位置编码
+
+hidden state为三维，第0维是batch size，第1维是sequence length，第2维是hidden size，我们只取第二哥二维度的latent 的部分
+
+将incoming hook和augmentation结合在一起，通过模型获得输出，这里的latent augmentation是可学习的参数
+
+trigger使用一个线性层将模型的output变成一个2维的logits(表示invoke memory的概率)

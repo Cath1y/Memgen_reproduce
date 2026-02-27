@@ -1,0 +1,7 @@
+{"time":"2026-02-14T23:09:42.53118361+08:00","level":"INFO","msg":"main: starting server","port-filename":"/tmp/tmpxr5ds6fw/port-18088.txt","pid":18088,"log-level":0,"disable-analytics":false,"shutdown-on-parent-exit":false,"enable-dcgm-profiling":false}
+{"time":"2026-02-14T23:09:42.531694459+08:00","level":"INFO","msg":"server: will exit if parent process dies","ppid":18088}
+{"time":"2026-02-14T23:09:42.531688772+08:00","level":"INFO","msg":"server: accepting connections","addr":{"Name":"/tmp/wandb-18088-21717-2009674719/socket","Net":"unix"}}
+{"time":"2026-02-14T23:09:42.714342797+08:00","level":"INFO","msg":"connection: ManageConnectionData: new connection created","id":"1(@)"}
+{"time":"2026-02-14T23:09:42.717788745+08:00","level":"INFO","msg":"handleInformInit: received","streamId":"oggowavh","id":"1(@)"}
+{"time":"2026-02-14T23:09:43.930796207+08:00","level":"INFO","msg":"handleInformInit: stream started","streamId":"oggowavh","id":"1(@)"}
+{"time":"2026-02-14T23:14:56.645056217+08:00","level":"INFO","msg":"server: parent process exited, terminating service process"}

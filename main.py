@@ -38,7 +38,15 @@ def parse_args():
         "in xxx=yyy format will be merged into config file (deprecate), "
         "change to --cfg-options instead.",
     )
-
+    # Add resume_from_checkpoint argument
+    '''
+    parser.add_argument(
+        "--resume_from_checkpoint",
+        type=str,
+        default=None,
+        help="Path to a checkpoint folder to resume training from, or 'True' to resume from the latest checkpoint in output_dir."
+    )
+    '''
     args = parser.parse_args()
 
     return args
@@ -49,7 +57,13 @@ def build_working_dir(config: Config) -> str:
     mode = config.run_cfg.mode
     dataset_name = config.dataset_cfg.name
     model_name = config.model_cfg.model_name.split("/")[1]
-    parent_dir = os.path.join("results", mode, dataset_name, model_name)
+    
+    base_results_dir = "/root/autodl-tmp/experiments/results"
+    
+    # 自动创建基础目录以防报错
+    os.makedirs(base_results_dir, exist_ok=True)
+    
+    parent_dir = os.path.join(base_results_dir, mode, dataset_name, model_name)
 
     # name: <prompt_aug_num>_<prompt_latents_len>_<inference_aug_num>_<inference_latents_len>_<timestamp>
     max_prompt_aug_num = config.model_cfg.max_prompt_aug_num
@@ -70,6 +84,7 @@ def main():
     
     # set up working directory
     working_dir = build_working_dir(config)
+    print(f"Working Directory created at: {working_dir}")
     
     # set up logger
     config.run_cfg.log_dir = os.path.join(working_dir, "logs")
@@ -92,7 +107,7 @@ def main():
     # train or evaluate 
     if config.run_cfg.mode == "train":
         runner.train()
-    
+            
     elif config.run_cfg.mode == "evaluate":
         runner.evaluate()
 

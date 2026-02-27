@@ -1,4 +1,5 @@
 import logging
+import warnings
 from typing import Union, Optional
 
 import random
@@ -12,6 +13,7 @@ from transformers import (
 )
 from transformers.modeling_utils import PreTrainedModel
 
+#将config引入进来
 from memgen.model.configuration_memgen import MemGenConfig
 from memgen.model.modeling_utils import (
     MemGenOutputWithPast,
@@ -44,7 +46,8 @@ class MemGenModel(PreTrainedModel, MemGenLoraSwitchMixin, MemGenGenerationMixin)
             weaver_model = base_model
         if trigger_model is None:
             trigger_model = base_model
-
+        
+        #fix_model_parameters:作用：冻结模型参数
         fix_model_parameters(base_model)  
         fix_model_parameters(weaver_model)
         fix_model_parameters(trigger_model)
@@ -91,7 +94,6 @@ class MemGenModel(PreTrainedModel, MemGenLoraSwitchMixin, MemGenGenerationMixin)
         # Normalize the tokenizer's chat template
         self.tokenizer.chat_template = CONVERSATION_TEMPLATE
     
-
     @property
     def device(self):
         return self.reasoner.device
@@ -426,6 +428,8 @@ class MemGenModel(PreTrainedModel, MemGenLoraSwitchMixin, MemGenGenerationMixin)
 
             # If there are sentences to augment, apply augmentation; others remain with left padding
             if len(augment_indices) > 0:
+                #debug: whether weaver is activated
+                #print(f"DEBUG: Weaver activated at step {i} for {len(augment_indices)} samples") 
                 # Increment the augmentation count for sentences that are being augmented
                 if i != 0:  
                     sentence_augment_count[augment_indices] += 1

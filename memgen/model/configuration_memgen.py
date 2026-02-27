@@ -30,3 +30,4 @@ class MemGenConfig(PretrainedConfig):
         self.trigger_lora_config = trigger_lora_config
         self.max_prompt_aug_num = max_prompt_aug_num
         self.max_inference_aug_num = max_inference_aug_num
+        self.all_delimiters_activated = kwargs.get("all_delimiters_activated", False)

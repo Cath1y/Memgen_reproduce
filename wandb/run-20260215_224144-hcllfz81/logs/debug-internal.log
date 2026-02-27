@@ -1,0 +1,13 @@
+{"time":"2026-02-15T22:41:44.940557143+08:00","level":"INFO","msg":"stream: starting","core version":"0.23.0"}
+{"time":"2026-02-15T22:41:46.239564175+08:00","level":"INFO","msg":"stream: created new stream","id":"hcllfz81"}
+{"time":"2026-02-15T22:41:46.239676727+08:00","level":"INFO","msg":"handler: started","stream_id":"hcllfz81"}
+{"time":"2026-02-15T22:41:46.239899966+08:00","level":"INFO","msg":"stream: started","id":"hcllfz81"}
+{"time":"2026-02-15T22:41:46.239936895+08:00","level":"INFO","msg":"sender: started","stream_id":"hcllfz81"}
+{"time":"2026-02-15T22:41:46.239933729+08:00","level":"INFO","msg":"writer: started","stream_id":"hcllfz81"}
+{"time":"2026-02-16T00:17:26.824739641+08:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":3336}
+{"time":"2026-02-16T00:17:26.824777742+08:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":1}
+{"time":"2026-02-16T00:17:26.825913899+08:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":3800}
+{"time":"2026-02-16T00:17:26.827850456+08:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":783}
+{"time":"2026-02-16T00:17:26.828156512+08:00","level":"INFO","msg":"flowcontrol: backed up, offloading to disk","recordNumber":4725}
+{"time":"2026-02-16T00:17:26.828424108+08:00","level":"INFO","msg":"flowcontrol: unblocked","totalOffloaded":84}
+{"time":"2026-02-16T04:06:44.764561226+08:00","level":"INFO","msg":"stream: closing","id":"hcllfz81"}
